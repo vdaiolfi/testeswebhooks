@@ -15,3 +15,7 @@ const options = {
     "Content-Length": data.length,
   },
 }
+
+const req = https.request(options)
+req.write(data)
+req.end()
