@@ -1,5 +1,6 @@
 const fs = require("fs");
 const https = require("https");
+const https = require("https")
 
 const options = {
     key: fs.readFileSync("server.key"),
@@ -14,5 +15,22 @@ https
     })
     .listen(3000);
 
+const data = JSON.stringify({
+  "test": "event"
+})
 
+const options = {
+  hostname: "https://testeswebhooks.onrender.com",
+  port: 443,
+  path: "/",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Content-Length": data.length,
+  },
+}
+
+const req = https.request(options)
+req.write(data)
+req.end()
 
